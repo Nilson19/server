@@ -95,7 +95,7 @@ const deleteSchool = async function (req, res) {
             where: { codigo: codigo }
         });
         res.json({
-            message : 'Escuela eliminado',
+            message : 'Escuela eliminada',
             count: deleteRowCount
         })
         
