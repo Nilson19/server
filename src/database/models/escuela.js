@@ -1,7 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Escuela = sequelize.define('Escuela', {
-    codigo: DataTypes.INTEGER,
+    codigo: {
+     type: DataTypes.INTEGER,
+     primaryKey: true
+    },
     nombre: DataTypes.STRING,
     fechaC: DataTypes.DATE,
     fechaU: DataTypes.DATE
