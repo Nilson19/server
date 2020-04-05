@@ -5,7 +5,9 @@ module.exports = (sequelize, DataTypes) => {
     nombre: DataTypes.STRING,
     fechaC: DataTypes.DATE,
     fechaU: DataTypes.DATE
-  }, {});
+  }, {
+    timestamps: false
+  });
   Escuela.associate = function(models) {
     // hasMany profesores
     Escuela.hasMany(models.Profesor,{

@@ -9,10 +9,12 @@ module.exports = (sequelize, DataTypes) => {
     sexo: DataTypes.STRING,
     fechaC: DataTypes.DATE,
     fechaU: DataTypes.DATE
-  }, {});
+  }, {
+    timestamps: false
+  });
   Estudiante.associate = function(models) {
     // hasMany materias
-    Estudiante.hasMany(models.Materia,{
+    Estudiante.belongsToMany(models.Materia,{
       through: "Matricula", 
       foreignKey: "cedulaEs"
     });

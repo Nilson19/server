@@ -1,10 +1,10 @@
 const {Router} = require('express');
-const {createUsuario, consultUsuarios, oneUsuario, consultarLogin} = require('../controllers/estudiantes.controller');
+const {crearStudent, consultUsuarios, oneUsuario, consultarLogin} = require('../controllers/estudiantes.controller');
 const router = Router();
 
 // /api/usuarios/
-router.post('/crear', createUsuario); 
-
+router.post('/crear', crearStudent); 
+router.get('/consultar', consultUsuarios); 
    
 
 module.exports ={

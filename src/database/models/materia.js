@@ -7,15 +7,17 @@ module.exports = (sequelize, DataTypes) => {
     creditos: DataTypes.INTEGER,
     fechaC: DataTypes.DATE,
     fechaU: DataTypes.DATE
-  }, {});
+  }, {
+    timestamps: false
+  });
   Materia.associate = function(models) {
     // hasMany estudiantes
-    Materia.hasMany(models.Estudiante,{
+    Materia.belongsToMany(models.Estudiante,{
       through: "Matricula",
       foreignKey: 'materiaID'
     });
     // hasMany profesores
-    Materia.hasMany(models.Profesor,{
+    Materia.belongsToMany(models.Profesor,{
       through: "Matricula",
       foreignKey: 'materiaID'
     });

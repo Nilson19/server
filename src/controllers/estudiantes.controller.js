@@ -1,11 +1,11 @@
-const Prueba = require('../database/models/prueba');
+const models = require('../database/models');
 
-const createUsuario = async function (req, res){
+const crearStudent = async function (req, res){
     const {cedula, nombre, apellido, correo, celular, sexo} = req.body;
     var fechaC = new Date();
     var fechaU = new Date();
     try{
-        let newEstudiante = await Prueba.create({
+        let newEstudiante = await models.Estudiante.create({
             cedula,
             nombre,
             apellido,
@@ -32,7 +32,7 @@ const createUsuario = async function (req, res){
 
 const consultUsuarios = async function (req, res){
     try{
-        const allusers = await usuarios.findAll();
+        const allusers = await estudiante.findAll();
             res.json({
                 data: allusers
             });
@@ -81,7 +81,10 @@ const consultarLogin = async function (req, res){
     }
 }
 
+
+
 module.exports ={
-    createUsuario
+    crearStudent,
+    consultUsuarios
 }
 

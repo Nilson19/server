@@ -8,7 +8,9 @@ module.exports = (sequelize, DataTypes) => {
     nota: DataTypes.FLOAT,
     fechaC: DataTypes.DATE,
     fechaU: DataTypes.DATE
-  }, {});
+  }, {
+    timestamps: false
+  });
   Matricula.associate = function(models) {
     // belongsTo estudiante
     Matricula.belongsTo(models.Estudiante);
