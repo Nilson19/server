@@ -1,7 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Materia = sequelize.define('Materia', {
-    codigo: DataTypes.INTEGER,
+    codigo: {
+     type: DataTypes.INTEGER,
+     primaryKey: true
+    },
     escuela: DataTypes.INTEGER,
     nombre: DataTypes.STRING,
     creditos: DataTypes.INTEGER,
@@ -22,7 +25,9 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'materiaID'
     });
     // belongsTo escuela
-    Materia.belongsTo(models.Escuela);
+    Materia.belongsTo(models.Escuela,{
+      foreignKey: 'codigo'
+    });
   };
   return Materia;
 };

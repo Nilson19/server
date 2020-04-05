@@ -9,7 +9,11 @@ module.exports = {
       },
       escuela: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references:{
+          model: 'Escuelas',
+          key: 'codigo'
+        }
       },
       nombre: {
         allowNull: false,

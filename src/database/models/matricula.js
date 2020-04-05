@@ -13,11 +13,17 @@ module.exports = (sequelize, DataTypes) => {
   });
   Matricula.associate = function(models) {
     // belongsTo estudiante
-    Matricula.belongsTo(models.Estudiante);
+    Matricula.belongsTo(models.Estudiante,{
+      foreignKey: 'cedulaEs'
+    });
     // belongsTo materias
-    Matricula.belongsTo(models.Materia);
+    Matricula.belongsTo(models.Materia,{
+      foreignKey: 'materiaID'
+    });
     // belongsTo profesor
-    Matricula.belongsTo(models.Profesor);
+    Matricula.belongsTo(models.Profesor,{
+      foreignKey: 'profesorID'
+    });
 
   };
   return Matricula;
