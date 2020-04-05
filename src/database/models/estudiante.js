@@ -1,7 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Estudiante = sequelize.define('Estudiante', {
-    cedula: DataTypes.INTEGER,
+    cedula: {
+      type: DataTypes.INTEGER,
+      primaryKey : true
+    },
     nombre: DataTypes.STRING,
     apellido: DataTypes.STRING,
     correo: DataTypes.STRING,

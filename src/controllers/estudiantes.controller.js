@@ -19,20 +19,20 @@ const crearStudent = async function (req, res){
         });
         if(newEstudiante){
             return res.json({
-                message: 'creado satisfactoriamente'
+                message: 'Creado satisfactoriamente'
             });
         }
     }catch(e){
         console.log(e);
         res.json({
-            message: 'hubo un error'
+            message: 'Hubo un error'
         })
     }
 }
 
-const consultUsuarios = async function (req, res){
+const consultarStudents = async function (req, res){
     try{
-        const allusers = await estudiante.findAll();
+        const allusers = await models.Estudiante.findAll();
             res.json({
                 data: allusers
             });
@@ -41,35 +41,34 @@ const consultUsuarios = async function (req, res){
     }
 }
 
-const oneUsuari = async function o(req, res){
+const Student = async function (req, res){
     try{
-        const {id_usuario} = request.params;
-        const usuario = await usuarios.findOne({
+        const {cedula} = req.body;
+        const estudiante = await models.Estudiante.findOne({
             where:{
-                id_usuario
+                cedula
             }
         })
         res.json({
-            data: usuario
+            data: estudiante
         })
     }catch(e){
         console.log(e);
     }
 }
 
-const consultarLogin = async function (req, res){
+const Login = async function (req, res){
     
-    const {id_usuario, pass} = req.body;
+    const {correo, cedula} = req.body;
     try{
-        const tipoUsuario = await usuarios.findOne({
-            attributes: ['tipo'],
+        const usuario = await usuarios.findOne({
             where:{
-                id_usuario,
-                pass
+                correo,
+                cedula
             }
         });
-        if(tipoUsuario){
-            return res.send(tipoUsuario);
+        if(usuario){
+            return res.json(tipoUsuario);
         }else
              return res.json(null);
     }catch(e){
@@ -81,10 +80,67 @@ const consultarLogin = async function (req, res){
     }
 }
 
+const updateStudent = async function (req, res) {
+    const {cedula} = req.params;
+    const {nombre, apellido, correo, celular, sexo} = req.body;
+    var fechaU = new Date();
+    try {
+
+        const updateUsuario = await models.Estudiante.update({
+            nombre,
+            apellido,
+            correo,
+            celular,
+            sexo,
+            fechaU
+        },{
+            where: { cedula: cedula }
+        });
+        
+        if(updateUsuario){
+            res.json(
+                {   
+                    data: updateUsuario,
+                    message: 'Estudiante actualizado'
+                })
+        }
+    }
+    catch(e){
+        res.json({
+            message: 'Hubo un error'
+        })
+    }
+}
+
+const deleteStudent = async function (req, res) {
+    const { cedula } = req.body;
+    try {
+        const deleteRowCount = await Usuario.destroy({
+            where: { cedula: cedula }
+        });
+        res.json({
+            message : 'Estudiante eliminado',
+            count: deleteRowCount
+        })
+        
+    } catch (e) {
+        console.log(e);
+        res.status(502).json({
+            message: "Algo salio mal",
+            data: {}
+        });
+    }
+}
+
 
 
 module.exports ={
     crearStudent,
-    consultUsuarios
+    consultarStudents,
+    Student,
+    Login,
+    updateStudent,
+    deleteStudent
+
 }
 

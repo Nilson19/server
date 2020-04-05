@@ -1,12 +1,16 @@
 const {Router} = require('express');
-const {crearStudent, consultUsuarios, oneUsuario, consultarLogin} = require('../controllers/estudiantes.controller');
-const router = Router();
+const {crearStudent, consultarStudents, Student, Login, updateStudent, deleteStudent} = require('../controllers/estudiantes.controller');
+const routerStudent = Router();
 
 // /api/usuarios/
-router.post('/crear', crearStudent); 
-router.get('/consultar', consultUsuarios); 
+routerStudent.post('/crear', crearStudent); 
+routerStudent.get('/listar', consultarStudents);
+routerStudent.post('/consultar', Student);
+routerStudent.post('/login', Login);
+routerStudent.put('/actualizar/:cedula', updateStudent);
+routerStudent.post('/eliminar', deleteStudent); 
    
 
 module.exports ={
-    router
+    routerStudent
 } 

@@ -3,7 +3,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 
 //importing routes
-const {router} = require('./src/routes/estudiantes');
+const {routerStudent} = require('./src/routes/estudiantes');
 
 const app = express();
 
@@ -13,7 +13,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 //routes
-app.use('/api/estudiantes', router);
+app.use('/api/estudiantes', routerStudent);
 
 app.listen(3000, () =>{
     console.log('server on port 3000');
