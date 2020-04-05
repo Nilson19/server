@@ -38,6 +38,9 @@ const consultarStudents = async function (req, res){
             });
     }catch(e){
         console.log(e);
+        res.json({
+            message: 'Hubo un error'
+        })
     }
 }
 
@@ -54,6 +57,9 @@ const Student = async function (req, res){
         })
     }catch(e){
         console.log(e);
+        res.json({
+            message: 'Hubo un error'
+        })
     }
 }
 
@@ -115,7 +121,7 @@ const updateStudent = async function (req, res) {
 const deleteStudent = async function (req, res) {
     const { cedula } = req.body;
     try {
-        const deleteRowCount = await Usuario.destroy({
+        const deleteRowCount = await models.Estudiante.destroy({
             where: { cedula: cedula }
         });
         res.json({
