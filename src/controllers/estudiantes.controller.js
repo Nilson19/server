@@ -67,14 +67,15 @@ const Login = async function (req, res){
     
     const {correo, cedula} = req.body;
     try{
-        const usuario = await usuarios.findOne({
+        const usuario = await models.Estudiante.findOne({
+            attributes:['cedula', 'nombre'],
             where:{
                 correo,
                 cedula
             }
         });
         if(usuario){
-            return res.json(tipoUsuario);
+            return res.json(usuario);
         }else
              return res.json(null);
     }catch(e){
