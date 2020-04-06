@@ -14,7 +14,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references:{
-          model: 'Materias',
+          model: 'Materia',
           key: 'codigo'
         }
       },
@@ -26,7 +26,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: true,
         references:{
-          model: 'Profesores',
+          model: 'Profesors',
           key: 'cedula'
         }
       },
@@ -39,7 +39,7 @@ module.exports = {
         type: Sequelize.DATE
       },
       fechaU: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE
       }
     });
