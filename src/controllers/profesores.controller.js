@@ -19,7 +19,7 @@ const crearTeacher = async function (req, res){
         },{
             fields: ['cedula', 'escuela', 'nombre', 'apellido', 'titulo', 'correo', 'celular', 'sexo', 'fechaC', 'fechaU']
         });
-        if(newEstudiante){
+        if(newTeacher){
             return res.json({
                 message: 'Creado satisfactoriamente'
             });
