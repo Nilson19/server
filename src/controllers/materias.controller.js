@@ -64,7 +64,7 @@ const Class = async function (req, res){
 
 const updateClass = async function (req, res) {
     const {codigo} = req.params;
-    const {escula, nombre, creditos} = req.body;
+    const {escuela, nombre, creditos} = req.body;
     var fechaU = new Date();
     try {
 
