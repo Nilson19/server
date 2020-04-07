@@ -5,7 +5,7 @@ const crearRegistration = async function (req, res){
     var fechaC = new Date();
     var fechaU = new Date();
     try{
-        let newMateria = await models.Matriculas.create({
+        let newMateria = await models.Matricula.create({
             cedulaEs,
             materiaID,
             estado,
@@ -30,7 +30,7 @@ const crearRegistration = async function (req, res){
 
 const consultarRegistrations = async function (req, res){
     try{
-        const allRegistrations = await models.Matriculas.findAll();
+        const allRegistrations = await models.Matricula.findAll();
             res.json({
                 data: allRegistrations
             });
@@ -45,8 +45,8 @@ const consultarRegistrations = async function (req, res){
 const registrations = async function (req, res){
     try{
         const {cedulaEs} = req.body;
-        const matriculas = await models.Matriculas.findAll({
-            attributes:['materiID', 'estado', 'profesorID', 'fechaC', 'fechaU'],
+        const matriculas = await models.Matricula.findAll({
+            attributes:['materiaID', 'estado', 'profesorID', 'fechaC', 'fechaU'],
             where:{
                 cedulaEs
             }
@@ -65,7 +65,7 @@ const registrations = async function (req, res){
 const regClass = async function (req, res){
     try{
         const {materiaID} = req.body;
-        const matriculas = await models.Matriculas.findAll({
+        const matriculas = await models.Matricula.findAll({
             attributes:['cedulaEs', 'estado', 'profesorID', 'fechaC', 'fechaU'],
             where:{
                 materiaID
@@ -88,7 +88,7 @@ const updateRegistration = async function (req, res) {
     var fechaU = new Date();
     try {
 
-        const updateMatricula = await models.Matriculas.update({
+        const updateMatricula = await models.Matricula.update({
             estado,
             fechaU
         },{
@@ -115,7 +115,7 @@ const asignarProfesor = async function (req, res) {
     const {profesorID} = req.body;
     try {
 
-        const updateMatricula = await models.Matriculas.update({
+        const updateMatricula = await models.Matricula.update({
             profesorID
         },{
             where: { materiaID: materiaID}
