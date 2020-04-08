@@ -28,6 +28,6 @@ app.use('/', (req,res)=>{
     })
 });
 
-app.listen(process.env.PORT, () =>{
-    console.log('server on port 3000');
+app.listen(3000, () =>{
+    console.log('3000');
 });
