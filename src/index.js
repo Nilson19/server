@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
@@ -28,6 +29,6 @@ app.use('/', (req,res)=>{
     })
 });
 
-app.listen(3000, () =>{
-    console.log('3000');
+app.listen(process.env.PORT, () =>{
+    console.log(process.env.PORT);
 });
