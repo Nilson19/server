@@ -3,7 +3,7 @@
     "url": "postgres://ghabegffniapqn:13f946ffcacf8da2117dc8fa81f3fe8de273c77916374eda91eb0b7030014461@ec2-52-200-119-0.compute-1.amazonaws.com:5432/d4u66memos5cta",
     "dialect": "postgres",
     "dialectOptions": {
-      "ssl": true
+      "ssl": false
     }
     
    
