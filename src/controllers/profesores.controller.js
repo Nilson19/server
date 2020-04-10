@@ -76,10 +76,9 @@ const Login = async function (req, res){
                 cedula
             }
         });
-        if(usuario){
-            return res.json(usuario);
-        }else
-             return res.json(null);
+        res.json({
+            data: usuario
+        });
     }catch(e){
         console.log(e);
         res.json({
