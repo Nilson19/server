@@ -18,9 +18,9 @@ module.exports = (sequelize, DataTypes) => {
   Asignacion.associate = function(models) {
     // belongsTo materia
     Asignacion.belongsTo(models.Materia,{
-      foreignKey: 'materiID'
+      foreignKey: 'materiaID'
     });
-    // belongsTo profesores
+    // belongsTo materia
     Asignacion.belongsTo(models.Profesor,{
       foreignKey: 'profesorID'
     });

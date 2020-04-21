@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
   Profesor.associate = function(models) {
     // hasMany materias
     Profesor.belongsToMany(models.Materia,{
-      through: "Matricula",
+      through: "Asignacion",
       foreignKey: 'profesorID'
     });
     // belongsTo escuela
