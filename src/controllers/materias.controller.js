@@ -61,6 +61,25 @@ const Class = async function (req, res){
     }
 }
 
+const classForSchool = async function (req, res){
+    try{
+        const {escuela} = req.body;
+        const materias = await models.Materia.findAll({
+            where:{
+                escuela
+            }
+        })
+        res.json({
+            data: materias
+        })
+    }catch(e){
+        console.log(e);
+        res.json({
+            message: 'Hubo un error'
+        })
+    }
+}
+
 
 const updateClass = async function (req, res) {
     const {codigo} = req.params;
@@ -118,6 +137,7 @@ module.exports ={
     crearClass,
     consultarClass,
     Class,
+    classForSchool,
     updateClass,
     deleteClass
 
