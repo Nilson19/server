@@ -1,5 +1,5 @@
 const {Router} = require('express');
-const {crearSchool, consultarSchools, School, updateSchool, deleteSchool} = require('../controllers/escuelas.controllers');
+const {crearSchool, consultarSchools, School, updateSchool, deleteSchool} = require('../controllers/escuelas.controller');
 const routerSchool = Router();
 
 // /api/usuarios/
