@@ -2,8 +2,8 @@
 module.exports = (sequelize, DataTypes) => {
   const Materia = sequelize.define('Materia', {
     codigo: {
-     type: DataTypes.INTEGER,
-     primaryKey: true
+      type: DataTypes.INTEGER,
+      primaryKey: true
     },
     escuela: DataTypes.INTEGER,
     nombre: DataTypes.STRING,
@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     });
     // hasMany profesores
     Materia.belongsToMany(models.Profesor,{
-      through: "Matricula",
+      through: "Asignacion",
       foreignKey: 'materiaID'
     });
     // belongsTo escuela

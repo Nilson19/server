@@ -4,6 +4,7 @@ module.exports = {
     return queryInterface.createTable('Matriculas', {
       cedulaEs: {
         type: Sequelize.INTEGER,
+        primaryKey: true,
         allowNull: false,
         references:{
           model: 'Estudiantes',
@@ -12,23 +13,20 @@ module.exports = {
       },
       materiaID:{
         type: Sequelize.INTEGER,
+        primaryKey: true,
         allowNull: false,
         references:{
           model: 'Materia',
           key: 'codigo'
         }
       },
+      grupo:{
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
       estado:{
         type: Sequelize.STRING,
         allowNull: false
-      },
-      profesorID:{
-        type: Sequelize.INTEGER,
-        allowNull: true,
-        references:{
-          model: 'Profesors',
-          key: 'cedula'
-        }
       },
       nota:{
         type: Sequelize.FLOAT,

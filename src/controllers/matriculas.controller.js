@@ -1,30 +1,48 @@
 const models = require('../database/models');
 
 const crearRegistration = async function (req, res){
-    const {cedulaEs, materiaID, estado} = req.body;
+
+    const {cedulaEs, materiaID, grupo, estado} = req.body;
     var fechaC = new Date();
     var fechaU = new Date();
+
     try{
-        let newMateria = await models.Matricula.create({
-            cedulaEs,
-            materiaID,
-            estado,
-            fechaC,
-            fechaU
-        },{
-            fields: ['cedulaEs', 'materiaID', 'estado', 'fechaC', 'fechaU']
+        const asignacion = await models.Asignacion.findOne({
+            where:{
+                materiaID,
+                grupo
+            }
         });
-        if(newMateria){
-            return res.json({
-                message: 'matriculado satisfactoriamente'
-            });
+        if(asignacion != null){
+            try{
+                let newMateria = await models.Matricula.create({
+                    cedulaEs,
+                    materiaID,
+                    grupo,
+                    estado,
+                    fechaC,
+                    fechaU
+                },{
+                    fields: ['cedulaEs', 'materiaID', 'grupo', 'estado', 'fechaC', 'fechaU']
+                });
+                if(newMateria){
+                    return res.json({
+                        message: 'matriculado satisfactoriamente'
+                    });
+                }
+            }catch(e){
+                console.log(e);
+                res.json({
+                    message: 'Hubo un error'
+                })
+            }
         }
-    }catch(e){
-        console.log(e);
+    }
+    catch(e){
         res.json({
             message: 'Hubo un error'
         })
-    }
+    }    
 }
 
 
@@ -46,7 +64,7 @@ const registrations = async function (req, res){
     try{
         const {cedulaEs} = req.body;
         const matriculas = await models.Matricula.findAll({
-            attributes:['materiaID', 'estado', 'profesorID', 'fechaC', 'fechaU'],
+            attributes:['materiaID', 'grupo', 'estado', 'fechaC', 'fechaU'],
             where:{
                 cedulaEs
             }
@@ -64,11 +82,32 @@ const registrations = async function (req, res){
 
 const regClass = async function (req, res){
     try{
+        const {materiaID, grupo} = req.body;
+        const matriculas = await models.Matricula.findAll({
+            attributes:['cedulaEs', 'estado', 'fechaC', 'fechaU'],
+            where:{
+                materiaID,
+                grupo
+            }
+        })
+        res.json({
+            data: matriculas
+        })
+    }catch(e){
+        console.log(e);
+        res.json({
+            message: 'Hubo un error'
+        })
+    }
+}
+
+const regClassEs = async function (req, res){
+    try{
         const {materiaID} = req.body;
         const matriculas = await models.Matricula.findAll({
-            attributes:['cedulaEs', 'estado', 'profesorID', 'fechaC', 'fechaU'],
+            attributes:['cedulaEs', 'grupo', 'estado', 'fechaC', 'fechaU'],
             where:{
-                materiaID
+                materiaID,
             }
         })
         res.json({
@@ -84,11 +123,12 @@ const regClass = async function (req, res){
 
 const updateRegistration = async function (req, res) {
     const {cedulaEs} = req.params;
-    const {estado} = req.body;
+    const {grupo, estado} = req.body;
     var fechaU = new Date();
     try {
 
         const updateMatricula = await models.Matricula.update({
+            grupo,
             estado,
             fechaU
         },{
@@ -110,31 +150,6 @@ const updateRegistration = async function (req, res) {
     }
 }
 
-const asignarProfesor = async function (req, res) {
-    const {materiaID} = req.params;
-    const {profesorID} = req.body;
-    try {
-
-        const updateMatricula = await models.Matricula.update({
-            profesorID
-        },{
-            where: { materiaID: materiaID}
-        });
-        
-        if(updateMatricula){
-            res.json(
-                {   
-                    data: updateMatricula,
-                    message: 'Matricula actualizada'
-                })
-        }
-    }
-    catch(e){
-        res.json({
-            message: 'Hubo un error'
-        })
-    }
-}
 
 
 
@@ -143,7 +158,7 @@ module.exports ={
     consultarRegistrations,
     registrations,
     regClass,
+    regClassEs,
     updateRegistration,
-    asignarProfesor
 }
 

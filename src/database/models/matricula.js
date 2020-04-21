@@ -1,10 +1,16 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Matricula = sequelize.define('Matricula', {
-    cedulaEs: DataTypes.INTEGER,
-    materiaID: DataTypes.INTEGER,
+    cedulaEs: {
+      type: DataTypes.INTEGER,
+      primaryKey: true
+    },
+    materiaID: {
+      type: DataTypes.INTEGER,
+      primaryKey: true
+    },
+    grupo: DataTypes.INTEGER,
     estado: DataTypes.STRING,
-    profesorID: DataTypes.STRING,
     nota: DataTypes.FLOAT,
     fechaC: DataTypes.DATE,
     fechaU: DataTypes.DATE
@@ -19,10 +25,6 @@ module.exports = (sequelize, DataTypes) => {
     // belongsTo materias
     Matricula.belongsTo(models.Materia,{
       foreignKey: 'materiaID'
-    });
-    // belongsTo profesor
-    Matricula.belongsTo(models.Profesor,{
-      foreignKey: 'profesorID'
     });
 
   };
