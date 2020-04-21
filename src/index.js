@@ -24,7 +24,7 @@ app.use('/api/escuelas', routerSchool);
 app.use('/api/materias', routerClass);
 app.use('/api/profesores', routerTeacher);
 app.use('/api/matriculas', routerRegistration);
-app.use('/api/matriculas', routerAsignations);
+app.use('/api/asignaciones', routerAsignations);
 
 app.use('/', (req,res)=>{
     res.json({
