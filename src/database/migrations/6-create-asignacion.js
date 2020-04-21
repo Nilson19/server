@@ -13,7 +13,6 @@ module.exports = {
       },
       profesorID: {
         allowNull: false,
-        primaryKey: true,
         type: Sequelize.INTEGER,
         references:{
           model: 'Profesors',
@@ -22,6 +21,7 @@ module.exports = {
       },
       grupo: {
         type: Sequelize.INTEGER,
+        primaryKey: true,
         allowNull: false
       },
       fechaC: {

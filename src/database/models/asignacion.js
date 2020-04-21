@@ -5,11 +5,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       primaryKey: true
     },
-    profesorID: {
+    profesorID: DataTypes.INTEGER,
+    grupo: {
       type: DataTypes.INTEGER,
       primaryKey: true
     },
-    grupo: DataTypes.INTEGER,
     fechaC: DataTypes.DATE,
     fechaU: DataTypes.DATE
   }, {
