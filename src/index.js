@@ -9,6 +9,7 @@ const {routerSchool} = require('./routes/escuelas');
 const {routerClass} = require('./routes/materias');
 const {routerTeacher} = require('./routes/profesores');
 const {routerRegistration} = require('./routes/matriculas');
+const {routerAsignations} = require('./routes/asignaciones');
 
 const app = express();
 
@@ -23,6 +24,8 @@ app.use('/api/escuelas', routerSchool);
 app.use('/api/materias', routerClass);
 app.use('/api/profesores', routerTeacher);
 app.use('/api/matriculas', routerRegistration);
+app.use('/api/matriculas', routerAsignations);
+
 app.use('/', (req,res)=>{
     res.json({
         message: 'Bienvenido'
