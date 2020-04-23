@@ -1,6 +1,6 @@
 const models = require('../database/models');
 
-const crearRegistration = async function (req, res){
+const crearMatricula = async function (req, res){
 
     const {cedulaEs, materiaID, grupo, estado} = req.body;
     var fechaC = new Date();
@@ -46,7 +46,7 @@ const crearRegistration = async function (req, res){
 }
 
 
-const consultarRegistrations = async function (req, res){
+const consultarMatriculas = async function (req, res){
     try{
         const allRegistrations = await models.Matricula.findAll();
             res.json({
@@ -60,7 +60,7 @@ const consultarRegistrations = async function (req, res){
     }
 }
 
-const registrations = async function (req, res){
+const matriculas = async function (req, res){
     try{
         const {cedulaEs} = req.body;
         const matriculas = await models.Matricula.findAll({
@@ -80,7 +80,7 @@ const registrations = async function (req, res){
     }
 }
 
-const regClass = async function (req, res){
+const estudiantes_class_group = async function (req, res){
     try{
         const {materiaID, grupo} = req.body;
         const matriculas = await models.Matricula.findAll({
@@ -101,7 +101,7 @@ const regClass = async function (req, res){
     }
 }
 
-const regClassEs = async function (req, res){
+const estudiantes_class = async function (req, res){
     try{
         const {materiaID} = req.body;
         const matriculas = await models.Matricula.findAll({
@@ -121,7 +121,7 @@ const regClassEs = async function (req, res){
     }
 }
 
-const updateRegistration = async function (req, res) {
+const updateMatricula = async function (req, res) {
     const {cedulaEs} = req.params;
     const {grupo, estado} = req.body;
     var fechaU = new Date();
@@ -154,11 +154,11 @@ const updateRegistration = async function (req, res) {
 
 
 module.exports ={
-    crearRegistration,
-    consultarRegistrations,
-    registrations,
-    regClass,
-    regClassEs,
-    updateRegistration,
+    crearMatricula,
+    consultarMatriculas,
+    matriculas,
+    estudiantes_class_group,
+    estudiantes_class,
+    updateMatricula,
 }
 

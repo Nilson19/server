@@ -80,7 +80,6 @@ const classForSchool = async function (req, res){
     }
 }
 
-
 const updateClass = async function (req, res) {
     const {codigo} = req.params;
     const {escuela, nombre, creditos} = req.body;
@@ -140,6 +139,5 @@ module.exports ={
     classForSchool,
     updateClass,
     deleteClass
-
 }
 

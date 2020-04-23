@@ -1,6 +1,6 @@
 const models = require('../database/models');
 
-const crearSchool = async function (req, res){
+const crearEscuela = async function (req, res){
     const {codigo, nombre} = req.body;
     var fechaC = new Date();
     var fechaU = new Date();
@@ -26,7 +26,7 @@ const crearSchool = async function (req, res){
     }
 }
 
-const consultarSchools = async function (req, res){
+const consultarEscuela = async function (req, res){
     try{
         const allEscuelas = await models.Escuela.findAll();
             res.json({
@@ -40,7 +40,7 @@ const consultarSchools = async function (req, res){
     }
 }
 
-const School = async function (req, res){
+const Escuela = async function (req, res){
     try{
         const {codigo} = req.body;
         const escuela = await models.Escuela.findOne({
@@ -60,7 +60,7 @@ const School = async function (req, res){
 }
 
 
-const updateSchool = async function (req, res) {
+const actualizarEscuela = async function (req, res) {
     const {codigo} = req.params;
     const {nombre} = req.body;
     var fechaU = new Date();
@@ -88,7 +88,7 @@ const updateSchool = async function (req, res) {
     }
 }
 
-const deleteSchool = async function (req, res) {
+const eliminarEscuela = async function (req, res) {
     const { codigo } = req.body;
     try {
         const deleteRowCount = await models.Escuela.destroy({
@@ -111,10 +111,9 @@ const deleteSchool = async function (req, res) {
 
 
 module.exports ={
-    crearSchool,
-    consultarSchools,
-    School,
-    updateSchool,
-    deleteSchool
-
+    crearEscuela,
+    consultarEscuela,
+    Escuela,
+    actualizarEscuela,
+    eliminarEscuela
 }

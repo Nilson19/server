@@ -147,6 +147,5 @@ module.exports ={
     Login,
     updateStudent,
     deleteStudent
-
 }
 

@@ -1,14 +1,14 @@
 const {Router} = require('express');
-const {crearRegistration, consultarRegistrations, registrations, regClass, regClassEs, updateRegistration} = require('../controllers/matriculas.controller');
+const {crearMatricula, consultarMatriculas, matriculas, estudiantes_class_group, estudiantes_class, updateMatricula} = require('../controllers/matriculas.controller');
 const routerRegistration = Router();
 
 // /api/usuarios/
-routerRegistration.post('/crear', crearRegistration); 
-routerRegistration.get('/listar', consultarRegistrations);
-routerRegistration.post('/consultar', registrations);
-routerRegistration.post('/matriculas', regClass);
-routerRegistration.post('/matriculados', regClassEs);
-routerRegistration.put('/actualizar/:cedulaEs', updateRegistration);
+routerRegistration.post('/crear', crearMatricula); 
+routerRegistration.get('/listar', consultarMatriculas);
+routerRegistration.post('/consultar', matriculas);
+routerRegistration.post('/matriculas', estudiantes_class_group);
+routerRegistration.post('/matriculados', estudiantes_class_group);
+routerRegistration.put('/actualizar/:cedulaEs', updateMatricula);
    
 
 module.exports ={

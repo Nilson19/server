@@ -151,5 +151,4 @@ module.exports ={
     Login,
     updateTeacher,
     deleteTeacher
-
 }

@@ -1,13 +1,13 @@
 const {Router} = require('express');
-const {crearSchool, consultarSchools, School, updateSchool, deleteSchool} = require('../controllers/escuelas.controller');
+const {crearEscuela, consultarEscuela, Escuela, actualizarEscuela, eliminarEscuela} = require('../controllers/escuelas.controller');
 const routerSchool = Router();
 
 // /api/usuarios/
-routerSchool.post('/crear', crearSchool); 
-routerSchool.get('/listar', consultarSchools);
-routerSchool.post('/consultar', School);
-routerSchool.put('/actualizar/:codigo', updateSchool);
-routerSchool.post('/eliminar', deleteSchool); 
+routerSchool.post('/crear', crearEscuela); 
+routerSchool.get('/listar', consultarEscuela);
+routerSchool.post('/consultar', Escuela);
+routerSchool.put('/actualizar/:codigo', actualizarEscuela);
+routerSchool.post('/eliminar', eliminarEscuela); 
    
 
 module.exports ={

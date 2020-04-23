@@ -28,7 +28,7 @@ const crearAsignacion = async function (req, res){
 }
 
 
-const consultarAsignations = async function (req, res){
+const consultarAsignacion = async function (req, res){
     try{
         const allAsignaciones = await models.Asignacion.findAll();
             res.json({
@@ -42,7 +42,7 @@ const consultarAsignations = async function (req, res){
     }
 }
 
-const Asignations = async function (req, res){
+const Asignacion = async function (req, res){
     try{
         const {materiaID} = req.body;
         const asignacion = await models.Asignacion.findAll({
@@ -62,29 +62,8 @@ const Asignations = async function (req, res){
     }
 }
 
-const checkAsignation = async function (req, res){
-    try{
-        const {materiaID, grupo} = req.body;
-        const asignacion = await models.Asignacion.findAll({
-            attributes:['materiaID', 'profesorID', 'grupo', 'fechaC', 'fechaU'],
-            where:{
-                materiaID,
-                grupo
-            }
-        })
-        res.json({
-            data: asignacion
-        })
-    }catch(e){
-        console.log(e);
-        res.json({
-            message: 'Hubo un error'
-        })
-    }
-}
 
-
-const updateAsignations = async function (req, res) {
+const actualizarAsignacion = async function (req, res) {
     const {materiaID} = req.params;
     const {profesorID, grupo} = req.body;
     var fechaU = new Date();
@@ -117,8 +96,7 @@ const updateAsignations = async function (req, res) {
 
 module.exports ={
     crearAsignacion,
-    consultarAsignations,
-    Asignations,
-    checkAsignation,
-    updateAsignations,
+    consultarAsignacion,
+    Asignacion,
+    actualizarAsignacion,
 }
