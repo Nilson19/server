@@ -60,26 +60,6 @@ const consultarMatriculas = async function (req, res){
     }
 }
 
-const matriculas = async function (req, res){
-    try{
-        const {cedulaEs} = req.body;
-        const matriculas = await models.Matricula.findAll({
-            attributes:['materiaID', 'grupo', 'estado', 'fechaC', 'fechaU'],
-            where:{
-                cedulaEs
-            }
-        })
-        res.json({
-            data: matriculas
-        })
-    }catch(e){
-        console.log(e);
-        res.json({
-            message: 'Hubo un error'
-        })
-    }
-}
-
 const estudiantes_class_group = async function (req, res){
     try{
         const {materiaID, grupo} = req.body;
@@ -119,6 +99,30 @@ const estudiantes_class = async function (req, res){
             message: 'Hubo un error'
         })
     }
+}
+
+const matriculas = async function (req, res){
+    const{cedulaEs} = req.body;
+    try{
+        const adicionadas = await models.Matricula.findAll({
+            include:[{
+                model: models.Materia,
+                required: true,
+                attributes:['nombre']
+            }],
+            where:{
+                cedulaEs
+            }
+        })
+        res.json({
+            data: adicionadas
+        })
+    }catch(e){
+        res.json({
+            message: 'Hubo un error'
+        })
+    }
+
 }
 
 const updateMatricula = async function (req, res) {
